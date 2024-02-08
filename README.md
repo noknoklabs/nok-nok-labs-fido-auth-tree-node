@@ -2,7 +2,7 @@
 The Nok Nok S3 Authentication Suite facilitates FIDO-certified multi-factor authentication (including FIDO UAF, WebAuthn, and FIDO2) for both mobile
 and web applications. This eliminates the inconvenience of having to remember and type usernames and passwords by enabling users to leverage the cutting-edge biometric authentication technologies that their devices already possess.
 
-This authentication node make it easy to integrate FIDO into your ForgeRock Access Manager implementation.
+This authentication node make it easy to integrate FIDO into your ForgeRock Access Manager (AM) implementation.
 
 ## About Nok Nok Labs
 Nok Nok is the trusted leader in next-generation consumer authentication providing passwordless solutions to the world’s largest organizations. Delivering the most innovative authentication solutions in the market today, Nok Nok empowers global organizations to improve the user experience to access digital services, while meeting the most advanced privacy and regulatory requirements. The Nok Nok™ S3 Authentication Suite integrates into existing security environments to deliver a cost-effective, future-proof and standards-based authentication solution. As a founder of the FIDO Alliance and inventor of FIDO specifications, Nok Nok is the expert in deploying standards-based authentication.  For more information, visit www.noknok.com.
@@ -42,11 +42,10 @@ var signinConfig = {
   "nnlappsdk_url": "${apiserver}/${tenant_id}/webapps/nnlappsdk-${appsdk_version}",
   "storage_endpoint": "${apiserver}/${tenant_id}/webapps/nnlgateway/storage",
   "reg_endpoint": "${apiserver}/${tenant_id}/webapps/nnlgateway/nnl/reg",
-  "auth_endpoint": "${apiserver}/${tenant_id}/webapps/nnlgateway/nnl/auth",
-  "external_auth_endpoint": "${amserver}/gwtutorial/login/${tenant_id}"
+  "auth_endpoint": "${apiserver}/${tenant_id}/webapps/nnlgateway/nnl/auth"
 }
 ```
-Replace {{tenant}} with the supplied tenant name.
+Replace {{tenant}} with the tenant used at Nok Nok Server (e.g. default) or Nok Nok Cloud.
 
 **6.** Extract the gwtutorial.war file, provided in the forgerock_bom zip, into the directory specified below.
 ```bash
@@ -78,7 +77,7 @@ var nnlConfig = {
   "netverify_endpoint": "${amserver}/gwtutorial/nvinit"
 }
 ```
-Replace {{tenant}} with the supplied tenant name.
+Replace {{tenant}} with the tenant used at Nok Nok Server (e.g. default) or Nok Nok Cloud.
 
 
 **9.** Restart the web container to pick up the new node. The custom node then appears in the **authentication trees menu**.
@@ -133,7 +132,7 @@ Update the hostname in the settings to match your installation:
 
 ## Registration Flow
 Before being able to use FIDO, you need to register a FIDO credential. To register a FIDO token, use the gwtutorial web application. Navigate to https://{{am-server-domain-and-port}}/**gwtutorial** in a WebAuthn capable browser.
-The **nnlsignin** application also supports registration with suggestions if an external authentication end point URL (`external_auth_endpoint`) is configured where the user can be authenticated with a regular user name and password.
+The **nnlsignin** application also supports sugesting the User to register a FIDO credential upon successful sign in.
 Also, ensure that you create the identical user in the Access Manager identity store.
 
 **1.** Login using a username defined in your Access Manager identity store, e.g., "demo", and hardcoded password "noknok".
@@ -175,4 +174,4 @@ You can test the authentication flow using the Access Manager console.
 <img src="./images/resource.png" width=50%>
 
 # Support
-For more information on this node or to request a demonstration, please contact: info@noknok.com
+For more information on this node or to request a demonstration, please contact: Frank Gasparovic - frank.gasparovic@forgerock.com or info@noknok.com
