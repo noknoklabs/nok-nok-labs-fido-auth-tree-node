@@ -10,13 +10,16 @@ Nok Nok is the trusted leader in next-generation consumer authentication providi
 ## Installation
 The following are the installation steps:
 
+Note: Replace {{tenant}} with the tenant used on your Nok Nok Server (e.g. default) or Nok Nok Cloud.
+
+
 **1.** Copy the `nnl-auth-nodes-<version>.jar` and `nnl-federation-common-<version>.jar` files, provided in the forgerock_bom zip, along with the external dependencies (except gwtutorial.war), into the directory where AM is currently deployed.
 ```bash
 ../$CATALINA_HOME/webapps/openam/WEB-INF/lib
 ```
 **2.** Copy the `jwt_config.json` file (JSON Web Key Set for token validation) provided to the following directory 
 ```bash
-../$CATALINA_HOME/webapps/openam/WEB-INF/classes/configurations/forgerock/SessionPlugin
+../$CATALINA_HOME/webapps/openam/WEB-INF/classes/configurations/{{tenant}}/SessionPlugin
 ```
 **3.** Extract the nnlsigin.war file, provided in the Web App SDK, to the directory shown below.  
 ```bash
@@ -24,7 +27,7 @@ The following are the installation steps:
 ```
 **4.** Copy the `jwt_config.json` file (JSON Web Key Set for token validation) provided to the following directory 
 ```bash
-../$CATALINA_HOME/webapps/nnlsignin/WEB-INF/classes/configurations/forgerock/SessionPlugin
+../$CATALINA_HOME/webapps/nnlsignin/WEB-INF/classes/configurations/{{tenant}}/SessionPlugin
 ```
 **5.** Update the API endpoints for the login page by editing the following file:
 ```json
@@ -45,7 +48,6 @@ var signinConfig = {
   "auth_endpoint": "${apiserver}/${tenant_id}/webapps/nnlgateway/nnl/auth"
 }
 ```
-Replace {{tenant}} with the tenant used at Nok Nok Server (e.g. default) or Nok Nok Cloud.
 
 **6.** Extract the gwtutorial.war file, provided in the forgerock_bom zip, into the directory specified below.
 ```bash
@@ -53,7 +55,7 @@ Replace {{tenant}} with the tenant used at Nok Nok Server (e.g. default) or Nok 
 ```
 **7.** Copy the `jwt_config.json` file (JSON Web Key Set for token validation) provided to the following directory 
 ```bash
-../$CATALINA_HOME/webapps/gwtutorial/WEB-INF/classes/configurations/forgerock/SessionPlugin
+../$CATALINA_HOME/webapps/gwtutorial/WEB-INF/classes/configurations/{{tenant}}/SessionPlugin
 ```
 **8.** Update the API endpoints for the login page by editing the following file:
 ```json
@@ -77,7 +79,6 @@ var nnlConfig = {
   "netverify_endpoint": "${amserver}/gwtutorial/nvinit"
 }
 ```
-Replace {{tenant}} with the tenant used at Nok Nok Server (e.g. default) or Nok Nok Cloud.
 
 
 **9.** Restart the web container to pick up the new node. The custom node then appears in the **authentication trees menu**.
@@ -174,4 +175,4 @@ You can test the authentication flow using the Access Manager console.
 <img src="./images/resource.png" width=50%>
 
 # Support
-For more information on this node or to request a demonstration, please contact: Frank Gasparovic - frank.gasparovic@forgerock.com or info@noknok.com
+For more information on this node or to request a demonstration, please contact: info@noknok.com
